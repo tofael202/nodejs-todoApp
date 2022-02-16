@@ -35,5 +35,17 @@ router.get('/:id/finish',async (req,res)=>{
     
     res.redirect('/')
 })
+router.get('/:id/update',async (req,res)=>{
+   
+    const updateTodo=await Todoinfo.findById(req.params.id)
+    
+    res.render('update',{updateTodo})
+})
+router.get('/:id/update/final',async (req,res)=>{
+   
+    const updateTodo=await Todoinfo.findByIdAndUpdate(req.params.id,{description:req.body.description})
+    
+    res.redirect('/')
+})
 
 module.exports=router
